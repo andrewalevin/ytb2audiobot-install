@@ -108,7 +108,7 @@ if [ "$OS" == "Linux" ]; then
 
   sudo systemctl start "$FILE_SERVICE_NAME"
 
-  sudo systemctl status "$FILE_SERVIC_NAME"
+  sudo systemctl status "$FILE_SERVICE_NAME"
 
 
 elif [ "$OS" == "Darwin" ]; then

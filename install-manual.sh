@@ -5,9 +5,21 @@ set -e
 
 # Determine the OS type (Linux or macOS)
 OS=$(uname)
-echo "OS SYSTEM:"
+echo "💻 Check your OS SYSTEM:"
 echo $OS
 
+
+if [ "$OS" == "Linux" ]; then
+  :
+elif [ "$OS" == "Darwin" ]; then
+  :
+else
+  echo "💻❌ Unsupported OS: $OS.\n🔚 Exit"
+  exit 1
+fi
+
+
+packages=("python3" "ffmpeg")
 
 # Install packages based on the OS type
 if [ "$OS" == "Linux" ]; then
@@ -15,23 +27,25 @@ if [ "$OS" == "Linux" ]; then
   sudo apt-get update
 
   echo "Installing required packages..."
-  sudo apt-get install -y python3 ffmpeg
+  for package in "${packages[@]}"; do
+    sudo apt-get install -y "$package"
+    done
 
 elif [ "$OS" == "Darwin" ]; then
   echo "Checking for Homebrew installation..."
   if ! command -v brew &> /dev/null; then
-    echo "Homebrew not found. Installing Homebrew..."
+    echo "❌ Homebrew not found. You need to install Homebrew..."
     exit 1
   fi
 
   echo "Installing required packages..."
-  brew install python3
-  brew install ffmpeg
-
+  for package in "${packages[@]}"; do
+    brew install "$package"
+    done
 else
-  echo "Unsupported OS: $OS"
-  exit 1
+  :
 fi
+
 
 # Check if the virtual environment directory exists
 if [ ! -d "venv" ]; then

@@ -104,11 +104,11 @@ if [ "$OS" == "Linux" ]; then
 
   sudo systemctl daemon-reload
 
-  sudo systemctl enable "$FILE_SERVICE"
+  sudo systemctl enable "$FILE_SERVICE_NAME"
 
-  sudo systemctl start "$FILE_SERVICE"
+  sudo systemctl start "$FILE_SERVICE_NAME"
 
-  sudo systemctl status "$FILE_SERVICE"
+  sudo systemctl status "$FILE_SERVIC_NAME"
 
 
 elif [ "$OS" == "Darwin" ]; then

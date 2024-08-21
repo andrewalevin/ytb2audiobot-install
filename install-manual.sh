@@ -93,9 +93,19 @@ echo ".env file has been created with TG_TOKEN and SALT."
 DEMON_CONTENT=""
 if [ "$OS" == "Linux" ]; then
   DEMON_CONTENT=$(curl -sL https://andrewalevin.github.io/ytb2audiobot-install/template-ytb2audiobot.service)
-  echo -e "${DEMON_CONTENT//\ROOT_DIR/$(pwd)}" > "ytb2audiobot.service"
 
-  ./reload-demon-linux.sh
+  FILE_SERVICE="/etc/systemd/system/ytb2audiobot.service"
+
+  echo -e "${DEMON_CONTENT//\ROOT_DIR/$(pwd)}" > "$FILE_SERVICE"
+
+  sudo systemctl daemon-reload
+
+  sudo systemctl enable "$FILE_SERVICE"
+
+  sudo systemctl start "$FILE_SERVICE"
+
+  sudo systemctl status "$FILE_SERVICE"
+
 
 elif [ "$OS" == "Darwin" ]; then
   DEMON_CONTENT=$(curl -sL https://andrewalevin.github.io/ytb2audiobot-install/template-com.andrewlevin.ytb2audiobot.plist)

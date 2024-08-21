@@ -63,11 +63,14 @@ source venv/bin/activate
 echo "Installing Python dependencies..."
 pip install ytb2audiobot
 
-
 echo ""
 echo "All Right!"
+
 # Prompt for input token
 read -p "📟 Please enter your telegram bot token: " TG_TOKEN
+echo "Betven READ"
+read -p "📟 Please enter your telegram bot token: " TG_TOKEN
+
 if [ -z "$TG_TOKEN" ]; then
     echo "No input token!"
     exit 1

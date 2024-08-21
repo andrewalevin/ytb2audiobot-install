@@ -96,7 +96,7 @@ if [ "$OS" == "Linux" ]; then
 
   FILE_SERVICE="/etc/systemd/system/ytb2audiobot.service"
 
-  echo -e "${DEMON_CONTENT//\ROOT_DIR/$(pwd)}" > "$FILE_SERVICE"
+  sudo echo -e "${DEMON_CONTENT//\ROOT_DIR/$(pwd)}" > "$FILE_SERVICE"
 
   sudo systemctl daemon-reload
 

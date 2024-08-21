@@ -94,9 +94,13 @@ DEMON_CONTENT=""
 if [ "$OS" == "Linux" ]; then
   DEMON_CONTENT=$(curl -sL https://andrewalevin.github.io/ytb2audiobot-install/template-ytb2audiobot.service)
 
-  FILE_SERVICE="/etc/systemd/system/ytb2audiobot.service"
+  FILE_SERVICE_NAME="ytb2audiobot.service"
 
-  echo -e "${DEMON_CONTENT//\ROOT_DIR/$(pwd)}" | sudo tee "$FILE_SERVICE"
+  FILE_SERVICE_PATH="/etc/systemd/system/$FILE_SERVICE_NAME"
+
+  echo -e "${DEMON_CONTENT//\ROOT_DIR/$(pwd)}" | sudo tee "$FILE_SERVICE_NAME"
+
+  sudo cp "$FILE_SERVICE_NAME" "$FILE_SERVICE_PATH"
 
   sudo systemctl daemon-reload
 

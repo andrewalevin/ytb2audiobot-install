@@ -105,7 +105,7 @@ if [ "$OS" == "Linux" ]; then
   CONTENT="${DEMON_CONTENT//\ROOT_DIR/$(pwd)}"
 
   echo -e "$CONTENT" > "ytb2audiobot.service"
-q
+
   ./reload-demon-linux.sh
 
 elif [ "$OS" == "Darwin" ]; then

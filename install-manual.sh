@@ -98,7 +98,7 @@ if [ "$OS" == "Linux" ]; then
 
   FILE_SERVICE_PATH="/etc/systemd/system/$FILE_SERVICE_NAME"
 
-  echo -e "${DEMON_CONTENT//\ROOT_DIR/$(pwd)}" | sudo tee "$FILE_SERVICE_NAME"
+  echo -e "${DEMON_CONTENT//\ROOT_DIR/$(pwd)}" > "$FILE_SERVICE_NAME"
 
   sudo cp "$FILE_SERVICE_NAME" "$FILE_SERVICE_PATH"
 

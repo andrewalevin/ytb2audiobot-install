@@ -94,7 +94,7 @@ DEMON_CONTENT=""
 
 
 if [ "$OS" == "Linux" ]; then
-  DEMON_CONTENT=$(curl -s file:///Users/andrewlevin/Desktop/ytb2audiobotDocker/installation/template-ytb2audiobot.service)
+  DEMON_CONTENT=$(curl -sL https://andrewalevin.github.io/ytb2audiobot-install/template-ytb2audiobot.service)
 
   CONTENT="${DEMON_CONTENT//\ROOT_DIR/$(pwd)}"
 
@@ -103,7 +103,7 @@ if [ "$OS" == "Linux" ]; then
   ./reload-demon-linux.sh
 
 elif [ "$OS" == "Darwin" ]; then
-  DEMON_CONTENT=$(curl -s file:///Users/andrewlevin/Desktop/ytb2audiobotDocker/installation/template-com.andrewlevin.ytb2audiobot.plist)
+  DEMON_CONTENT=$(curl -sL https://andrewalevin.github.io/ytb2audiobot-install/template-com.andrewlevin.ytb2audiobot.plist)
 
   CONTENT="${DEMON_CONTENT//\ROOT_DIR/$(pwd)}"
 

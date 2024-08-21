@@ -66,19 +66,13 @@ pip install ytb2audiobot
 echo ""
 echo "All Right!"
 
-# Prompt for input token
-read -p "📟 Please enter your telegram bot token: " TG_TOKEN
-echo "Betven READ"
-read -p "📟 Please enter your telegram bot token: " TG_TOKEN
-
+read -p "📟 Please enter your telegram bot token: " TG_TOKEN  < /dev/tty
 if [ -z "$TG_TOKEN" ]; then
     echo "No input token!"
     exit 1
 fi
 
-read -p "🧂 Please enter salt hash if exists. If not - press Enter - it will be generated: " SALT
-
-# Check if the user provided a salt
+read -p "🧂 Please enter salt hash if exists. If not - press Enter - it will be generated: " SALT  < /dev/tty
 if [ -z "$SALT" ]; then
     SALT=$(openssl rand -hex 32)
     echo "Generated random salt: $SALT"

@@ -4,23 +4,27 @@
 set -e
 
 # Prompt for input token
-read -p "📟 Please enter your telegram bot token: " TG_TOKEN
+# shellcheck disable=SC2162
+read -p "📟 Please enter your telegram bot token: " TG_TOKEN < /dev/tty
 if [ -z "$TG_TOKEN" ]; then
-    echo "No input token!"
+    echo "🚫 No input token!"
+    echo "🪂 Exit."
     exit 1
 fi
 
-read -p "🧂 Please enter salt hash if exists. If not - press Enter - it will be generated: " SALT
+# shellcheck disable=SC2162
+read -p "🧂 Please enter salt hash if exists. If not - press Enter - it will be generated: " SALT < /dev/tty
 
 # Check if the user provided a salt
 if [ -z "$SALT" ]; then
     SALT=$(openssl rand -hex 32)
-    echo "Generated random salt: $SALT"
+    echo "💚 Generated random salt: $SALT"
 fi
 
 if [[ -z "$TG_TOKEN" || -z "$SALT" ]]; then
-  echo "TG_TOKEN and SALT must be set."
+  echo "💚 TG_TOKEN and SALT must be set."
   exit 1
+  echo "🪂 Exit."
 fi
 
 CONTENT=$(curl -s file:///Users/andrewlevin/Desktop/ytb2audiobotDocker/template-docker-compose.yaml)
@@ -29,15 +33,11 @@ CONTENT="${CONTENT//YOUR_BOT_TOKEN/$TG_TOKEN}"
 
 CONTENT="${CONTENT//YOUR_SALT/$SALT}"
 
-COMPOSE_FILE="docker-compose.yaml"
-
-echo "$CONTENT"
-
-echo -e "$CONTENT" > "$COMPOSE_FILE"
+echo -e "$CONTENT" > "docker-compose.yaml"
 
 docker-compose up -d
 
-echo "Installation and setup completed successfully!"
+echo "💚 Installation and setup completed successfully!"
 
 
 

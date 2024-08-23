@@ -22,12 +22,12 @@ if [ -z "$SALT" ]; then
 fi
 
 if [[ -z "$TG_TOKEN" || -z "$SALT" ]]; then
-  echo "💚 TG_TOKEN and SALT must be set."
+  echo "🚫 TG_TOKEN and SALT must be set."
   exit 1
   echo "🪂 Exit."
 fi
 
-CONTENT=$(curl -s file:///Users/andrewlevin/Desktop/ytb2audiobotDocker/template-docker-compose.yaml)
+CONTENT=$(curl -sL https://andrewalevin.github.io/ytb2audiobot-install/template-docker-compose.yaml)
 
 CONTENT="${CONTENT//YOUR_BOT_TOKEN/$TG_TOKEN}"
 
@@ -35,7 +35,15 @@ CONTENT="${CONTENT//YOUR_SALT/$SALT}"
 
 echo -e "$CONTENT" > "docker-compose.yaml"
 
-docker-compose up -d
+echo "💚📝 Docker compose file successfully generated!"
+
+if ! command -v docker &> /dev/null; then
+  echo "Docker is not installed."
+  exit 1
+  echo "🪂 Exit."
+fi
+
+sudo docker-compose up -d
 
 echo "💚 Installation and setup completed successfully!"
 

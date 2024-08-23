@@ -1,6 +1,6 @@
-version: '3.9'
+
 services:
-  bot:
+  ytb2audiobot:
     image: andrewlevin/ytb2audiobot
     environment:
       - BOT_TOKEN=YOUR_BOT_TOKEN

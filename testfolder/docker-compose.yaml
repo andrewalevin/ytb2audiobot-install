@@ -4,5 +4,5 @@ services:
     image: andrewlevin/ytb2audiobot
     environment:
       - BOT_TOKEN=7287463773:AAFiIKRGJLt1TVb_dESjo96gmmP4jtpo6XE
-      - SALT=006bc8cc1615592cc41d119a948579efa8538635b2e3d721409a30b00c783ff5
+      - SALT=013bf983d5a4a2634defdc414c53b02d2737fdce8cd07624605fe58753055598
     restart: on-failure:3

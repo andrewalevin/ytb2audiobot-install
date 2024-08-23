@@ -38,7 +38,14 @@ echo -e "$CONTENT" > "docker-compose.yaml"
 echo "💚📝 Docker compose file successfully generated!"
 
 if ! command -v docker &> /dev/null; then
-  echo "Docker is not installed."
+  echo "🚫 Docker is not installed."
+  exit 1
+  echo "🪂 Exit."
+fi
+
+
+if ! docker info > /dev/null 2>&1; then
+  echo "🚫 Docker daemon is not running."
   exit 1
   echo "🪂 Exit."
 fi

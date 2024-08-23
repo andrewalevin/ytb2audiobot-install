@@ -1,0 +1,8 @@
+version: '3.9'
+services:
+  bot:
+    image: andrewlevin/ytb2audiobot
+    environment:
+      - BOT_TOKEN=7287463773:AAFiIKRGJLt1TVb_dESjo96gmmP4jtpo6XE
+      - SALT=006bc8cc1615592cc41d119a948579efa8538635b2e3d721409a30b00c783ff5
+    restart: on-failure:3
